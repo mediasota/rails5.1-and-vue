@@ -11,3 +11,10 @@ services:
       - "3000:3000"
     depends_on:
       - db
+  client:
+    build: .
+    command: yarn run dev
+    volumes:
+      - .:/myapp
+    ports:
+      - "3030:3030"
