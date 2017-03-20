@@ -7,6 +7,7 @@ services:
       - ./backend:/myapp/backend
     ports:
       - "3003:3003"
+
   frontend:
     build: ./frontend
     command: yarn run dev
@@ -14,3 +15,13 @@ services:
       - ./frontend:/myapp/frontend
     ports:
       - "8080:8080"
+
+  nginx:
+    restart: always
+    build: ./nginx/
+    ports:
+      - "80:80"
+    volumes:
+      - /www/public
+    links:
+      - frontend:frontend
